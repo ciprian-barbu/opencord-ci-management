@@ -25,7 +25,7 @@ ubuntu_systems() {
     # set up docker repo
     apt-key adv --keyserver keyserver.ubuntu.com --recv 0EBFCD88
     add-apt-repository \
-        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+        "deb [arch=arm64] https://download.docker.com/linux/ubuntu \
          $(lsb_release -cs) \
          stable"
 
@@ -82,7 +82,7 @@ EOF
 
     # install basic sofware requirements
     apt-get install -y \
-        "docker-ce=17.06*" \
+        "docker-ce=17.09.0*" \
         apt-transport-https \
         ansible \
         build-essential \
@@ -154,7 +154,7 @@ EOF
 
     # install ruby gems
     gem install \
-        mdl
+        mdl -v 0.5.0
         # end of gem install list
 
     # install npm modules

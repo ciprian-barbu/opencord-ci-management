@@ -5,6 +5,6 @@
   "ssh_user": "ubuntu",
 
   "distro": "Ubuntu 16.04",
-  "arch": "x86_64",
+  "arch": "arm64",
   "cloud_user_data": "provision/null_data.sh"
 }

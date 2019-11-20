@@ -217,7 +217,7 @@ EOF
     # added 2019-09-20 as apt-add-repository and software-properties-common weren't working
     cat <<EOF >/etc/apt/sources.list.d/packer.list
 # created by packer
-deb http://us.archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse
+deb http://ports.ubuntu.com/ubuntu-ports $(lsb_release -sc) main universe restricted multiverse
 
 EOF
 
@@ -274,16 +274,20 @@ EOF
     apt-get install java-common
 
     # install Java8
-    CORRETTO_JAVA8_VERSION="8.222.10-1"
-    CORRETTO_JAVA8_SHA256SUM="e5fd6c6f2d1a1fc5e6926f7a543e67ad0f0e0389ddc5d2deb5890bdeb21ea445"
-    curl -L -o /tmp/corretto_java8.deb "https://d3pxv6yz143wms.cloudfront.net/$(echo $CORRETTO_JAVA8_VERSION | tr - .)/java-1.8.0-amazon-corretto-jdk_${CORRETTO_JAVA8_VERSION}_amd64.deb"
+    # CORRETTO_JAVA8_VERSION="8.222.10-1"
+    CORRETTO_JAVA8_VERSION="8.232.09-1"
+    # CORRETTO_JAVA8_SHA256SUM="e5fd6c6f2d1a1fc5e6926f7a543e67ad0f0e0389ddc5d2deb5890bdeb21ea445"
+    CORRETTO_JAVA8_SHA256SUM="af7e9ee6459ff6ae2d0d8ba372b6caa7cdb01d34778c981bc61c84fb29748356"
+    curl -L -o /tmp/corretto_java8.deb "https://d3pxv6yz143wms.cloudfront.net/$(echo $CORRETTO_JAVA8_VERSION | tr - .)/java-1.8.0-amazon-corretto-jdk_${CORRETTO_JAVA8_VERSION}_arm64.deb"
     echo "$CORRETTO_JAVA8_SHA256SUM  /tmp/corretto_java8.deb" | sha256sum -c -
     dpkg -i /tmp/corretto_java8.deb
 
     # install Java11
-    CORRETTO_JAVA11_VERSION="11.0.4.11-1"
-    CORRETTO_JAVA11_SHA256SUM="f47c77f8f9ee5a80804765236c11dc749d351d3b8f57186c6e6b58a6c4019d3e"
-    curl -L -o /tmp/corretto_java11.deb "https://d3pxv6yz143wms.cloudfront.net/$(echo $CORRETTO_JAVA11_VERSION | tr - .)/java-11-amazon-corretto-jdk_${CORRETTO_JAVA11_VERSION}_amd64.deb"
+    # CORRETTO_JAVA11_VERSION="11.0.4.11-1"
+    CORRETTO_JAVA11_VERSION="11.0.5.10-1"
+    #CORRETTO_JAVA11_SHA256SUM="f47c77f8f9ee5a80804765236c11dc749d351d3b8f57186c6e6b58a6c4019d3e"
+    CORRETTO_JAVA11_SHA256SUM="fecf2354ee4e3ba563b742dba50a4d01270bf5db06806c6bd0ffc6834af74a2c"
+    curl -L -o /tmp/corretto_java11.deb "https://d3pxv6yz143wms.cloudfront.net/$(echo $CORRETTO_JAVA11_VERSION | tr - .)/java-11-amazon-corretto-jdk_${CORRETTO_JAVA11_VERSION}_arm64.deb"
     echo "$CORRETTO_JAVA11_SHA256SUM  /tmp/corretto_java11.deb" | sha256sum -c -
     dpkg -i /tmp/corretto_java11.deb
 
@@ -354,9 +358,12 @@ EOF
     # pulling down the packages in a way similar to this ansible role, rather than using cabal:
     # https://github.com/lfit/ansible-roles-shellcheck-install/blob/master/tasks/main.yml
 
-    SHELLCHECK_VERSION="v0.6.0"
-    SHELLCHECK_SHA256SUM="95c7d6e8320d285a9f026b5241f48f1c02d225a1b08908660e8b84e58e9c7dce"
-    curl -L -o /tmp/shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
+    # SHELLCHECK_VERSION="v0.6.0"
+    # SHELLCHECK_SHA256SUM="95c7d6e8320d285a9f026b5241f48f1c02d225a1b08908660e8b84e58e9c7dce"
+    # curl -L -o /tmp/shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
+    SHELLCHECK_VERSION="latest"
+    SHELLCHECK_SHA256SUM="de064ccf1322d2db06627d9879ccc188f1fb9d151e4fcca3311e0e7390989724"
+    curl -L -o /tmp/shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-${SHELLCHECK_VERSION}.linux.aarch64.tar.xz
     echo "$SHELLCHECK_SHA256SUM  /tmp/shellcheck.tar.xz" | sha256sum -c -
     pushd /tmp
     tar -xJvf shellcheck.tar.xz
