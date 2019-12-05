@@ -361,8 +361,8 @@ EOF
     # SHELLCHECK_VERSION="v0.6.0"
     # SHELLCHECK_SHA256SUM="95c7d6e8320d285a9f026b5241f48f1c02d225a1b08908660e8b84e58e9c7dce"
     # curl -L -o /tmp/shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
-    SHELLCHECK_VERSION="latest"
-    SHELLCHECK_SHA256SUM="de064ccf1322d2db06627d9879ccc188f1fb9d151e4fcca3311e0e7390989724"
+    SHELLCHECK_VERSION="v0.7.0"
+    SHELLCHECK_SHA256SUM="012100d9778cfa7ea73bf42ab55b3e02cda7f75d65aab32c6445012398c89b54"
     curl -L -o /tmp/shellcheck.tar.xz https://storage.googleapis.com/shellcheck/shellcheck-${SHELLCHECK_VERSION}.linux.aarch64.tar.xz
     echo "$SHELLCHECK_SHA256SUM  /tmp/shellcheck.tar.xz" | sha256sum -c -
     pushd /tmp
