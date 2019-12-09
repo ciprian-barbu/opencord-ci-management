@@ -299,6 +299,18 @@ EOF
         dpkg -i pandoc.deb
         rm -f pandoc.deb
         popd
+    elif [ "$MACHINE" == "aarch64" ];
+    then
+        # install minikube
+        MINIKUBE_VERSION="1.5.2"
+        pushd /tmp
+        git clone https://github.com/kubernetes/minikube.git && cd minikube
+        git checkout "v${MINIKUBE_VERSION}"
+        make out/minikube-linux-aarch64
+        cp out/minikube-linux-aarch64 /usr/local/bin/minikube
+        cd ..
+        rm -rf minikube
+        popd
     fi
 
     # give sudo permissions on minikube and protoc to jenkins user
