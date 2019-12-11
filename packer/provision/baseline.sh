@@ -306,7 +306,7 @@ EOF
     CORRETTO_JAVA11_SHA256SUM_amd64="de87ead922d571a3aca509bc1f11a6e8efce9e9151cc5d2bbbc137492b1aaa0a"
     CORRETTO_JAVA11_SHA256SUM_arm64="fecf2354ee4e3ba563b742dba50a4d01270bf5db06806c6bd0ffc6834af74a2c"
     CORRETTO_JAVA11_SHA256SUM="CORRETTO_JAVA11_SHA256SUM_${ARCH_JAVA}"
-    curl -L -o /tmp/corretto_java11.deb "https://d3pxv6yz143wms.cloudfront.net/$(echo $CORRETTO_JAVA11_VERSION | tr - .)/java-11-amazon-corretto-jdk_${CORRETTO_JAVA11_VERSION}_arm64.deb"
+    curl -L -o /tmp/corretto_java11.deb "https://d3pxv6yz143wms.cloudfront.net/$(echo $CORRETTO_JAVA11_VERSION | tr - .)/java-11-amazon-corretto-jdk_${CORRETTO_JAVA11_VERSION}_${ARCH_JAVA}.deb"
     echo "${!CORRETTO_JAVA11_SHA256SUM}  /tmp/corretto_java11.deb" | sha256sum -c -
     dpkg -i /tmp/corretto_java11.deb
 
